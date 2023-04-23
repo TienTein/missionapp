@@ -57,6 +57,7 @@ const Header = () => {
   }, [scrollPosition]);
 
   const handleClearUser = (event) => {
+    signOut();
     localStorage.removeItem("user");
     setExistUser(null);
     dispatch(authSlice.actions.clearUserData());
