@@ -70,7 +70,7 @@ export default function DrawlerHeader() {
         onClick={() => setOpenDrawer(!openDrawer)}
         className="w-fit rounded-none"
       >
-        <MenuIcon className="text-black text-[40px]" />
+        <MenuIcon className="text-white text-[40px]" />
       </IconButton>
     </>
   );

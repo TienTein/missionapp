@@ -8,7 +8,7 @@ export default function Home() {
       <div className="w-full h-[40vh] relative">
         <Image src={misionbg} alt="" className="w-full h-full" />
         <div className="bg-black w-full h-full absolute top-0 left-0 bg-opacity-60 flex justify-center items-center">
-          <p className="text-6xl font-reggaeone">Sự kiện</p>
+          <p className="text-6xl font-reggaeone">Nhiệm vụ xem Video</p>
         </div>
       </div>
       <MissionItems />

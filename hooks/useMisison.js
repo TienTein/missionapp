@@ -16,7 +16,41 @@ const useMisison = () => {
       console.log(error);
     }
   };
-  return { getMissionDatas };
+
+  const postMissionVideoUser = async ({
+    Active,
+    CreateDate,
+    CreateUser,
+    UserId,
+    CampaignId,
+    token,
+  }) => {
+    const data = {
+      Active: Active,
+      CreateDate: CreateDate,
+      CreateUser: CreateUser,
+      UserId: UserId,
+      CampaignId: CampaignId,
+    };
+    try {
+      dispatch(missionSlice.actions.setMissionLoading());
+      const res = await axios.post(
+        "https://api-demowebsite.cdktcnqn.edu.vn/api/UserCampaign/create",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(missionSlice.actions.setMissionSuccess(res.data));
+    } catch (error) {
+      console.log(error);
+      dispatch(missionSlice.actions.setMissionFailure(error.response.data));
+    }
+  };
+
+  return { getMissionDatas, postMissionVideoUser };
 };
 
 export default useMisison;

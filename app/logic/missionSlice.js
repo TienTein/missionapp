@@ -19,7 +19,6 @@ export default createSlice({
     setMissionFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-      state.data = null;
     },
     clearMissionData: (state) => {
       state.loading = false;

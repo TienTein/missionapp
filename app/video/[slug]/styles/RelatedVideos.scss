@@ -1,0 +1,41 @@
+.slider {
+    height: 400px;
+    div {
+        outline: none;
+        .slide {
+            padding: 30px;
+            height: 400px;
+            transition: 0.5s;
+            cursor: pointer;
+
+            img {
+                height: 70%;
+            }
+        }
+    }
+}
+
+.arrow {
+    position: absolute;
+    z-index: 10;
+    width: fit-content;
+    height: 100px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    top: 50%;
+    bottom: 50%;
+    margin: auto 0;
+    cursor: pointer;
+    img {
+        margin: 0 5px;
+        width: 15px;
+        height: 50%;
+    }
+    &.prev-arrow {
+        left: 0;
+    }
+    &.next-arrow {
+        right: 0;
+    }
+}
