@@ -45,7 +45,6 @@ const useAuth = () => {
           referralcode,
         }
       );
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

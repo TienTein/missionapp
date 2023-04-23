@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import { AppBar, useMediaQuery, useTheme } from "@mui/material";
@@ -20,6 +21,7 @@ const Header = () => {
   const theme = useTheme();
   const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
   const [existUser, setExistUser] = useState(null);
+  const { data: session } = useSession();
 
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
@@ -54,7 +56,7 @@ const Header = () => {
     };
   }, [scrollPosition]);
 
-  const handleClearUser = () => {
+  const handleClearUser = (event) => {
     localStorage.removeItem("user");
     setExistUser(null);
     dispatch(authSlice.actions.clearUserData());
@@ -63,7 +65,7 @@ const Header = () => {
 
   return (
     <AppBar
-      className={`bg-white text-black flex justify-between flex-row py-6 ${
+      className={`bg-black text-black flex justify-between flex-row py-6 ${
         isMatchMD ? "px-[3vw]" : "px-[10vw]"
       }`}
       style={{
@@ -81,9 +83,9 @@ const Header = () => {
         <>
           {pathname === "/auth" ? null : (
             <div className="w-fit">
-              {user.data || existUser ? (
+              {user.data || existUser || session ? (
                 <button
-                  className="bg-[#FFBD59] font-bold uppercase hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#E88F08] hover:border-[#E88F08]"
+                  className="bg-[#FFBD59] font-bold uppercase border hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#FFBD59] hover:border hover:border-[#E88F08] transition duration-500 hover:transition hover:duration-500  hover:-translate-y-1"
                   onClick={handleClearUser}
                 >
                   đăng xuất

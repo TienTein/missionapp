@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ReduxProvider } from "./redux/ReduxProvider";
+import ProvidersWrapper from "./ProvidersWrapper";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,11 +18,13 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-          <main className="bg-[#1F1E1C]">
-            <Header />
-            {children}
-            <Footer />
-          </main>
+          <ProvidersWrapper>
+            <main className="bg-[#1F1E1C]">
+              <Header />
+              {children}
+              <Footer />
+            </main>
+          </ProvidersWrapper>
         </ReduxProvider>
       </body>
     </html>
