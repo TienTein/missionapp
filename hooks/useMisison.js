@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import missionSlice from "../app/logic/missionSlice";
+import { toast } from "react-toastify";
 
 const useMisison = () => {
   const dispatch = useDispatch();
@@ -43,9 +44,22 @@ const useMisison = () => {
           },
         }
       );
+      toast.success("Nhận điểm thành công!!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
       dispatch(missionSlice.actions.setMissionSuccess(res.data));
     } catch (error) {
-      console.log(error);
+      {
+        error.response.data.Message ===
+        "Authorization has been denied for this request."
+          ? toast.error(
+              "Phiên đăng nhập của bạn đã kết thúc. Xin hãy đăng nhập lại!!",
+              {
+                position: toast.POSITION.TOP_CENTER,
+              }
+            )
+          : null;
+      }
       dispatch(missionSlice.actions.setMissionFailure(error.response.data));
     }
   };

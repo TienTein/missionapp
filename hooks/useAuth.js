@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import authSlice from "../app/logic/authSlice";
+import { toast } from "react-toastify";
 
 const useAuth = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,17 @@ const useAuth = () => {
         params
       );
       dispatch(authSlice.actions.setUserSuccess(res.data));
+      toast.success("Đăng nhập thành công", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error) {
+      {
+        error.response.data.error === "invalid_grant"
+          ? toast.error("Tài khoản hoặc mật khẩu không chính xác", {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          : null;
+      }
       dispatch(authSlice.actions.setUserFailure(error.response.data.error));
     }
   };

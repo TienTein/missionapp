@@ -1,5 +1,10 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
+import { checkLoadingSelector } from "./redux/selector";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,5 +16,24 @@ export default function ProvidersWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  return <SessionProvider>{children}</SessionProvider>;
+  const isLoading = useSelector(checkLoadingSelector);
+
+  // if (isLoading) {
+  //   // Render a loading screen...
+  //   return <div>Loading...</div>;
+  // }
+
+  console.log(isLoading);
+
+  return (
+    <SessionProvider>
+      <ToastContainer />
+      {isLoading && (
+        <div className="w-screen h-screen bg-black text-white flex justify-center items-center">
+          <CircularProgress className="text-4xl" />
+        </div>
+      )}
+      {children}
+    </SessionProvider>
+  );
 }
