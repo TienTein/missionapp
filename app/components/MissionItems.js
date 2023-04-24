@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { toast } from "react-toastify";
 import Pagination from "./Pagination";
-import CircularProgress from "@mui/material/CircularProgress";
 import useMisison from "../../hooks/useMisison";
 
 import Image from "next/image";
@@ -63,70 +62,56 @@ export default function MissionItems() {
   const totalPages = Math.ceil(newMissions?.length / itemsPerPage);
 
   return (
-    <>
-      {missions.loading ? (
-        <div className="w-full h-[70vh] flex justify-center items-center">
-          <CircularProgress className="text-white text-5xl" />
-        </div>
-      ) : (
-        <>
-          <div className="px-[10vw] py-[10vh]">
-            <div
-              className={`grid gap-6 transition-all duration-500 [&>*]:mb-4 ${
-                isMatchMD
-                  ? "grid-cols-1"
-                  : isMatchLG
-                  ? "grid-cols-2"
-                  : "grid-cols-3"
-              }`}
-            >
-              {newDatas &&
-                newDatas.map((item) => (
-                  <div key={item.Id}>
-                    <div className={`h-[60%]`}>
-                      <Image
-                        src={item?.ImagePath}
-                        alt=""
-                        className="h-full w-full hover:scale-105 hover:transition hover:duration-500 transition duration-500  cursor-pointer rounded-md"
-                        width={500}
-                        height={500}
-                        onClick={() => handleClick(item)}
-                      />
-                    </div>
+    <div className="px-[10vw] py-[10vh]">
+      <div
+        className={`grid gap-6 transition-all duration-500 [&>*]:mb-4 ${
+          isMatchMD ? "grid-cols-1" : isMatchLG ? "grid-cols-2" : "grid-cols-3"
+        }`}
+      >
+        {newDatas &&
+          newDatas.map((item) => (
+            <div key={item.Id}>
+              <div className={`h-[60%]`}>
+                <Image
+                  src={item?.ImagePath}
+                  alt=""
+                  className="h-full w-full hover:scale-105 hover:transition hover:duration-500 transition duration-500  cursor-pointer rounded-md"
+                  width={500}
+                  height={500}
+                  onClick={() => handleClick(item)}
+                />
+              </div>
 
-                    <div className={`flex flex-col justify-between h-[40%]`}>
-                      <p
-                        className="font-reggaeone pt-2 px-2 cursor-pointer"
-                        onClick={() => handleClick(item)}
-                      >
-                        {item.Title}
-                      </p>
+              <div className={`flex flex-col justify-between h-[40%]`}>
+                <p
+                  className="font-reggaeone pt-2 px-2 cursor-pointer"
+                  onClick={() => handleClick(item)}
+                >
+                  {item.Title}
+                </p>
 
-                      <div className="flex justify-between items-end pb-2 px-2">
-                        <span className="text-[#E88F08] font-bold">
-                          {item.FpointValue} Fpoint
-                        </span>
-                        <button
-                          className="text-black p-[1px] rounded-md border border-[#FFBD59]  hover:text-white hover:bg-[#E88F08]  hover:-translate-y-1 hover:transition hover:duration-500 transition duration-500 hover:inputhover"
-                          onClick={() => handleClick(item)}
-                        >
-                          <div className="bg-[#FFBD59] rounded-md border border-black px-4 py-1 hover:bg-[#E88F08] w-full h-full">
-                            Xem video
-                          </div>
-                        </button>
-                      </div>
+                <div className="flex justify-between items-end pb-2 px-2">
+                  <span className="text-[#E88F08] font-bold">
+                    {item.FpointValue} Fpoint
+                  </span>
+                  <button
+                    className="text-black p-[1px] rounded-md border border-[#FFBD59]  hover:text-white hover:bg-[#E88F08]  hover:-translate-y-1 hover:transition hover:duration-500 transition duration-500 hover:inputhover"
+                    onClick={() => handleClick(item)}
+                  >
+                    <div className="bg-[#FFBD59] rounded-md border border-black px-4 py-1 hover:bg-[#E88F08] w-full h-full">
+                      Xem video
                     </div>
-                  </div>
-                ))}
+                  </button>
+                </div>
+              </div>
             </div>
-            <Pagination
-              totalPages={totalPages}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
-        </>
-      )}
-    </>
+          ))}
+      </div>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </div>
   );
 }
