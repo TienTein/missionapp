@@ -1,5 +1,7 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,5 +13,10 @@ export default function ProvidersWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider>
+      <ToastContainer />
+      {children}
+    </SessionProvider>
+  );
 }

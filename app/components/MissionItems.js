@@ -6,6 +6,7 @@ import { selectMissions } from "../redux/selector";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { toast } from "react-toastify";
 import Pagination from "./Pagination";
 import CircularProgress from "@mui/material/CircularProgress";
 import useMisison from "../../hooks/useMisison";
@@ -20,8 +21,24 @@ export default function MissionItems() {
   const missions = useSelector(selectMissions);
   const { data: session } = useSession();
   const { getMissionDatas } = useMisison();
+
   useEffect(() => {
     getMissionDatas();
+  }, []);
+
+  useEffect(() => {
+    if (session !== null && session !== undefined) {
+      toast.success("Đăng nhập thành công", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      const user = localStorage.getItem("user");
+      if (user == null) {
+        toast.warning("Không có tài khoản nào đang đăng nhập !!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+      }
+    }
   }, []);
 
   const handleClick = (item) => {

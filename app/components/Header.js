@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { toast } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
 import { AppBar, useMediaQuery, useTheme } from "@mui/material";

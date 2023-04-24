@@ -18,7 +18,6 @@ const AuthInputs = () => {
   const { data: session } = useSession();
   const theme = useTheme();
   const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
-  const [mightError, setMightError] = useState(false);
   const { signin, signup } = useAuth();
   const [showPass, setShowPass] = useState(false);
 
@@ -34,7 +33,6 @@ const AuthInputs = () => {
   };
 
   const handleAuth = () => {
-    setMightError(true);
     signin({
       username: inputs.username,
       password: inputs.password,
@@ -110,12 +108,6 @@ const AuthInputs = () => {
                 Quên mật khẩu?
               </Link>
             </div>
-
-            {mightError && user.error === "invalid_grant" ? (
-              <p className="text-[#FF2423]">
-                Tài khoản hoặc mật khẩu không chính xác
-              </p>
-            ) : null}
           </div>
         </div>
       )}
