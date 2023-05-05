@@ -113,8 +113,9 @@ const Header = () => {
                       active ? "text-[#E88F08]" : ""
                     } hover:bg-transparent hover:text-[#E88F08] font-bold capitalize py-2 px-6`}
                   >
-                    {user.data && user.data.fullName}
-                    {session && session.user.name}
+                    {user.data
+                      ? user.data.fullName
+                      : session && session.user.name}
                   </Button>
                   <Menu
                     anchorEl={anchorEl}
