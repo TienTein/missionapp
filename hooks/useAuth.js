@@ -1,4 +1,5 @@
 import axios from "axios";
+import { api_host } from "../utils/api";
 import { useDispatch } from "react-redux";
 import authSlice from "../app/logic/authSlice";
 import { toast } from "react-toastify";
@@ -14,10 +15,7 @@ const useAuth = () => {
       params.append("Username", username);
       params.append("Password", password);
       params.append("grant_type", "password");
-      const res = await axios.post(
-        "https://api-demowebsite.cdktcnqn.edu.vn/api/oauth/token",
-        params
-      );
+      const res = await axios.post(`${api_host}oauth/token`, params);
       dispatch(authSlice.actions.setUserSuccess(res.data));
       toast.success("Đăng nhập thành công", {
         position: toast.POSITION.TOP_CENTER,
@@ -34,34 +32,27 @@ const useAuth = () => {
     }
   };
 
-  const signup = async ({
-    username,
-    password,
-    rePassword,
-    fullname,
-    email,
-    phone,
-    referralcode,
-  }) => {
+  const getAccessTokenFromGoogle = async (code) => {
+    const formData = new FormData();
+    formData.append("code", code);
+    formData.append("client_id", "YOUR_CLIENT_ID");
+    formData.append("client_secret", "YOUR_CLIENT_SECRET");
+    formData.append("redirect_uri", "YOUR_REDIRECT_URI");
+    formData.append("grant_type", "authorization_code");
+
     try {
-      const res = axios.post(
-        "https://api-demowebsite.cdktcnqn.edu.vn/api/POST-api-appUser-add",
-        {
-          username,
-          password,
-          rePassword,
-          fullname,
-          email,
-          phone,
-          referralcode,
-        }
+      const response = await axios.post(
+        `${api_host}get-access-token`,
+        formData
       );
+      return response.data.access_token;
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      return null;
     }
   };
 
-  return { signin, signup };
+  return { signin, getAccessTokenFromGoogle };
 };
 
 export default useAuth;

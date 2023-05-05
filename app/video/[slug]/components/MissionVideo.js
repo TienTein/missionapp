@@ -7,7 +7,6 @@ import { selectMissions } from "../../../redux/selector";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import useMisison from "../../../../hooks/useMisison";
-import CircularProgress from "@mui/material/CircularProgress";
 import CurrentVideo from "./CurrentVideo";
 import ProgressMission from "./ProgressMission";
 
@@ -44,34 +43,26 @@ const MissionVideo = () => {
   }, [missions, id]);
 
   return (
-    <>
-      {missions.loading ? (
-        <div className="w-full h-[70vh] flex justify-center items-center">
-          <CircularProgress className="text-white text-5xl" />
-        </div>
-      ) : (
-        <div
-          className={`grid ${
-            isMatchMD ? "grid-cols-1" : "grid-cols-2"
-          } gap-4 text-white px-[10vw] py-[5vh]`}
-        >
-          <div className="flex flex-col [&>*]:mb-4">
-            <h1 className="text-[30px] font-reggaeone">{newMission?.Title}</h1>
-            <p>
-              Sed do.Lorem ipsum dolor sit amet, consectetur Nulla fringilla
-              purus Lorem ipsum dosectetur adipisicing elit at leo dignissim
-              congue. Mauris elementum accumsan leo vel tempor. Aliquam et elit
-              eu nunc rhoncus viverra quis at felis et netus et malesuada fames
-              ac turpis egestas. Aenean commodo ligula eget dolor
-            </p>
-          </div>
-          <div className="flex flex-col w-full">
-            <ProgressMission isPaused={isPaused} newMission={newMission} />
-            <CurrentVideo newMission={newMission} setIsPaused={setIsPaused} />
-          </div>
-        </div>
-      )}
-    </>
+    <div
+      className={`grid ${
+        isMatchMD ? "grid-cols-1" : "grid-cols-2"
+      } gap-4 text-white px-[10vw] py-[5vh]`}
+    >
+      <div className="flex flex-col [&>*]:mb-4">
+        <h1 className="text-[30px] font-reggaeone">{newMission?.Title}</h1>
+        <p>
+          Sed do.Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus
+          Lorem ipsum dosectetur adipisicing elit at leo dignissim congue.
+          Mauris elementum accumsan leo vel tempor. Aliquam et elit eu nunc
+          rhoncus viverra quis at felis et netus et malesuada fames ac turpis
+          egestas. Aenean commodo ligula eget dolor
+        </p>
+      </div>
+      <div className="flex flex-col w-full">
+        <ProgressMission isPaused={isPaused} newMission={newMission} />
+        <CurrentVideo newMission={newMission} setIsPaused={setIsPaused} />
+      </div>
+    </div>
   );
 };
 

@@ -5,10 +5,17 @@ import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
-import { AppBar, useMediaQuery, useTheme } from "@mui/material";
+import {
+  AppBar,
+  useMediaQuery,
+  useTheme,
+  Menu,
+  MenuItem,
+  Button,
+} from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DrawlerHeader from "./DrawlerHeader";
 import logo from "../../public/images/logo.png";
 import authSlice from "../logic/authSlice";
@@ -23,7 +30,9 @@ const Header = () => {
   const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
   const [existUser, setExistUser] = useState(null);
   const { data: session } = useSession();
-
+  const [active, setActive] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -41,7 +50,6 @@ const Header = () => {
       setExistUser(null);
     }
   }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const currentPosition = window.pageYOffset;
@@ -56,6 +64,16 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollPosition]);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setActive(true);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setActive(false);
+  };
 
   const handleClearUser = (event) => {
     signOut();
@@ -86,12 +104,35 @@ const Header = () => {
           {pathname === "/auth" ? null : (
             <div className="w-fit">
               {user.data || existUser || session ? (
-                <button
-                  className="bg-[#FFBD59] font-bold uppercase border hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#FFBD59] hover:border hover:border-[#E88F08] transition duration-500 hover:transition hover:duration-500  hover:-translate-y-1"
-                  onClick={handleClearUser}
-                >
-                  đăng xuất
-                </button>
+                <div className="flex">
+                  <Button
+                    variant="contained"
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    className={`${
+                      active ? "text-[#E88F08]" : ""
+                    } hover:bg-transparent hover:text-[#E88F08] font-bold capitalize py-2 px-6`}
+                  >
+                    {session && session.user.name}
+                    {user.data && user.data.fullName}
+                  </Button>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={openMenu}
+                    onClose={handleCloseMenu}
+                    disableScrollLock={true}
+                    className="[&>*>ul]:bg-[#19181C] [&>*>ul]:text-white [&>*>ul]:p-4 [&>*>ul>li]:border-b [&>*>ul>li]:border-white"
+                  >
+                    <MenuItem onClick={handleCloseMenu}>
+                      <button
+                        className="bg-[#FFBD59] font-bold uppercase border hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#FFBD59] hover:border hover:border-[#E88F08] transition duration-500 hover:transition hover:duration-500  hover:-translate-y-1"
+                        onClick={handleClearUser}
+                      >
+                        đăng xuất
+                      </button>
+                    </MenuItem>
+                  </Menu>
+                </div>
               ) : (
                 <Link
                   href="/auth"
