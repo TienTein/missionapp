@@ -20,7 +20,6 @@ export default function MissionItems() {
   const missions = useSelector(selectMissions);
   const { data: session } = useSession();
   const { getMissionDatas } = useMisison();
-
   useEffect(() => {
     getMissionDatas();
   }, []);
@@ -54,7 +53,7 @@ export default function MissionItems() {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
 
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;

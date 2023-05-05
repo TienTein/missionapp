@@ -5,6 +5,7 @@ import Image from "next/image";
 import useMisison from "@/hooks/useMisison";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { selectMissions } from "../../../redux/selector";
 import NextArrow from "@/public/images/NextArrrow.png";
 import PrevArrow from "@/public/images/PreviosArrow.png";
@@ -31,7 +32,8 @@ function SamplePrevArrow({ onClick }) {
 
 const RelatedVideos = () => {
   const router = useRouter();
-
+  const theme = useTheme();
+  const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
   const missions = useSelector(selectMissions);
   const { getMissionDatas } = useMisison();
   const [slideIndex, setSlideIndex] = useState(0);
@@ -52,7 +54,7 @@ const RelatedVideos = () => {
     infinite: true,
     speed: 500,
     swipeToSlide: true,
-    slidesToShow: 3,
+    slidesToShow: isMatchMD ? 1 : 3,
     slidesToScroll: 1,
     beforeChange: (current, next) => setSlideIndex(next),
     nextArrow: <SampleNextArrow />,

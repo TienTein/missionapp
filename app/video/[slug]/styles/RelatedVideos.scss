@@ -39,3 +39,9 @@
         right: 0;
     }
 }
+
+@media (max-width: 900px) {
+    .slide {
+        padding: 0 60px;
+    }
+}
