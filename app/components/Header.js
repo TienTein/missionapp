@@ -103,7 +103,7 @@ const Header = () => {
         <>
           {pathname === "/auth" ? null : (
             <div className="w-fit">
-              {user.data || existUser || session ? (
+              {user.data || existUser || session.user ? (
                 <div className="flex">
                   <Button
                     variant="contained"
@@ -115,7 +115,7 @@ const Header = () => {
                   >
                     {user.data
                       ? user.data.fullName
-                      : session && session.user.name}
+                      : session.user && session.user.name}
                   </Button>
                   <Menu
                     anchorEl={anchorEl}

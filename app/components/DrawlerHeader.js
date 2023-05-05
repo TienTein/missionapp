@@ -48,11 +48,12 @@ export default function DrawlerHeader() {
         <div className="bg-black text-white px-[10vw] py-[30px]">
           {pathname === "/auth" ? null : (
             <div className="w-full flex justify-end">
-              {user.data || existUser || session ? (
+              {user.data || existUser || session.user ? (
                 <div className="flex flex-col items-end">
                   <p className={`text-[#E88F08] font-bold capitalize py-2`}>
-                    {session && session.user.name}
-                    {user.data && user.data.fullName}
+                    {user.data
+                      ? user.data.fullName
+                      : session.user && session.user.name}
                   </p>
                   <button
                     className="bg-[#FFBD59] font-bold uppercase border hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#FFBD59] hover:border hover:border-[#E88F08] transition duration-500 hover:transition hover:duration-500  hover:-translate-y-1 hover:mb-[4px]"
