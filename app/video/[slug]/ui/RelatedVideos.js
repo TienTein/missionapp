@@ -66,17 +66,17 @@ const RelatedVideos = () => {
         <Slider {...settings}>
           {newMissions &&
             newMissions.map((mission) => (
-              <div className="slide relative" key={mission.Id}>
+              <div className="slide" key={mission.Id}>
                 <Image
                   src={mission.ImagePath}
                   alt=""
-                  className="w-full h-full hover:scale-105 transition duration-500 hover:transition hover:duration-500"
+                  className="hover:scale-105 transition duration-500 hover:transition hover:duration-500"
                   width={500}
-                  height={500}
+                  height={0}
                   onClick={() => handleClick(mission)}
                 />
                 <p
-                  className="text-white font-bold font-reggaeone mt-4"
+                  className="text-white font-bold mt-4"
                   onClick={() => handleClick(mission)}
                 >
                   {mission.Title}
