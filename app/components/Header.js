@@ -20,6 +20,7 @@ import DrawlerHeader from "./DrawlerHeader";
 import logo from "../../public/images/logo.png";
 import authSlice from "../logic/authSlice";
 import { selectUser } from "../redux/selector";
+import "../styles/Header.scss";
 
 const Header = () => {
   const pathname = usePathname();
@@ -85,9 +86,7 @@ const Header = () => {
 
   return (
     <AppBar
-      className={`bg-black text-black flex justify-between flex-row py-6 ${
-        isMatchMD ? "px-[3vw]" : "px-[10vw]"
-      }`}
+      className={`navbar__container ${isMatchMD ? "p__mobile" : ""}`}
       style={{
         position: isHeaderFixed ? "fixed" : "static",
         top: 0,
@@ -103,7 +102,7 @@ const Header = () => {
         <>
           {pathname === "/auth" ? null : (
             <div className="w-fit">
-              {user.data || existUser || session.user ? (
+              {user.data || existUser || session ? (
                 <div className="flex">
                   <Button
                     variant="contained"

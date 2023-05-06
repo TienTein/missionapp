@@ -1,0 +1,11 @@
+.navbar__container {
+    background-color: black;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 10vw;
+    .p__mobile {
+        padding: 1.5rem 3vw;
+    }
+}

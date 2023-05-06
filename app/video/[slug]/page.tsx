@@ -1,5 +1,5 @@
-import MissionVideo from "./components/MissionVideo";
-import RelatedVideos from "./components/RelatedVideos";
+import MissionVideo from "./ui/MissionVideo";
+import RelatedVideos from "./ui/RelatedVideos";
 
 export default function Video() {
   return (

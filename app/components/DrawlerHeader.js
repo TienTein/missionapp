@@ -48,7 +48,7 @@ export default function DrawlerHeader() {
         <div className="bg-black text-white px-[10vw] py-[30px]">
           {pathname === "/auth" ? null : (
             <div className="w-full flex justify-end">
-              {user.data || existUser || session.user ? (
+              {user.data || existUser || session ? (
                 <div className="flex flex-col items-end">
                   <p className={`text-[#E88F08] font-bold capitalize py-2`}>
                     {user.data
