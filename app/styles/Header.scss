@@ -8,4 +8,16 @@
     .p__mobile {
         padding: 1.5rem 3vw;
     }
+    .user__menu__button {
+        text-transform: capitalize;
+        font-weight: bold;
+        padding: 0.5rem 1.5rem;
+        background: transparent !important;
+        &:hover {
+            color: #e88f08;
+        }
+        &.active {
+            color: #e88f08;
+        }
+    }
 }

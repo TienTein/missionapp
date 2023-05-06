@@ -108,9 +108,7 @@ const Header = () => {
                     variant="contained"
                     onClick={handleClick}
                     endIcon={<KeyboardArrowDownIcon />}
-                    className={`${
-                      active ? "text-[#E88F08]" : ""
-                    } hover:bg-transparent hover:text-[#E88F08] font-bold capitalize py-2 px-6`}
+                    className={`user__menu__button ${active ? "active" : ""}`}
                   >
                     {user.data
                       ? user.data.fullName
