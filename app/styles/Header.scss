@@ -1,8 +1,8 @@
 .navbar__container {
-    background-color: black;
+    background-color: black !important;
     color: black;
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
     justify-content: space-between;
     padding: 1.5rem 10vw;
     .p__mobile {
