@@ -112,7 +112,7 @@ const Header = () => {
                   >
                     {user.data
                       ? user.data.fullName
-                      : session.user && session.user.name}
+                      : session?.user && session.user.name}
                   </Button>
                   <Menu
                     anchorEl={anchorEl}
