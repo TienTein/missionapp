@@ -6,6 +6,7 @@ import logo from "../../public/images/logo.png";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import "../styles/Footer.scss";
 
 const Footer = () => {
   return (
@@ -13,7 +14,7 @@ const Footer = () => {
       <Image src={footerBg} alt="" className="w-full h-full" />
       <div className="bg-black w-full h-full top-0 left-0 absolute bg-opacity-80 flex flex-col items-center justify-around pt-[2%] px-[3%]">
         <Image src={logo} alt="" className="h-20 w-[300px]" />
-        <div className="flex [&>*]:bg-[#FEBD2E] [&>*]:p-2 [&>*]:rounded-full [&>*]:text-[40px] [&>*]:mx-2">
+        <div className="footer__icons">
           <FacebookOutlinedIcon />
           <YouTubeIcon />
           <InstagramIcon />

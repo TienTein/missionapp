@@ -1,0 +1,11 @@
+.footer__icons {
+    display: flex;
+    svg {
+        background-color: #febd2e;
+        padding: 0.5rem;
+        border-radius: 100%;
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 0.5rem;
+    }
+}
