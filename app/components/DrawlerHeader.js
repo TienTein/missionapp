@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/selector";
 import { Drawer, IconButton } from "@mui/material";
@@ -11,6 +11,7 @@ import authSlice from "../logic/authSlice";
 
 export default function DrawlerHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const { data: session } = useSession();
@@ -33,9 +34,11 @@ export default function DrawlerHeader() {
   }, []);
 
   const handleClearUser = () => {
+    signOut();
     localStorage.removeItem("user");
     setExistUser(null);
     dispatch(authSlice.actions.clearUserData());
+    router.push("/");
   };
 
   return (
@@ -53,7 +56,11 @@ export default function DrawlerHeader() {
                   <p className={`text-[#E88F08] font-bold capitalize py-2`}>
                     {user.data
                       ? user.data.fullName
-                      : session.user && session.user.name}
+                      : session?.user
+                      ? session.user.name
+                      : existUser && existUser.fullName
+                      ? existUser.fullName
+                      : existUser?.name}
                   </p>
                   <button
                     className="bg-[#FFBD59] font-bold uppercase border hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#FFBD59] hover:border hover:border-[#E88F08] transition duration-500 hover:transition hover:duration-500  hover:-translate-y-1 hover:mb-[4px]"

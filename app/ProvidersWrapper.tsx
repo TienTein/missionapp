@@ -28,12 +28,14 @@ export default function ProvidersWrapper({
   return (
     <SessionProvider>
       <ToastContainer />
-      {isLoading && (
-        <div className="w-screen h-screen bg-black text-white flex justify-center items-center">
-          <CircularProgress className="text-4xl" />
-        </div>
-      )}
-      {children}
+      <div className="relative">
+        {isLoading && (
+          <div className="w-screen h-screen bg-black text-white flex justify-center items-center absolute">
+            <CircularProgress className="text-4xl" />
+          </div>
+        )}
+        {children}
+      </div>
     </SessionProvider>
   );
 }

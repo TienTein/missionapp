@@ -76,13 +76,15 @@ const Header = () => {
     setActive(false);
   };
 
-  const handleClearUser = (event) => {
+  const handleClearUser = () => {
     signOut();
     localStorage.removeItem("user");
     setExistUser(null);
     dispatch(authSlice.actions.clearUserData());
     router.push("/");
   };
+
+  console.log(existUser);
 
   return (
     <AppBar
@@ -112,7 +114,11 @@ const Header = () => {
                   >
                     {user.data
                       ? user.data.fullName
-                      : session?.user && session.user.name}
+                      : session?.user
+                      ? session.user.name
+                      : existUser && existUser.fullName
+                      ? existUser.fullName
+                      : existUser?.name}
                   </Button>
                   <Menu
                     anchorEl={anchorEl}
