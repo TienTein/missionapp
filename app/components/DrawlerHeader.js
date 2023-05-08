@@ -56,11 +56,15 @@ export default function DrawlerHeader() {
                   <p className={`text-[#E88F08] font-bold capitalize py-2`}>
                     {user.data
                       ? user.data.fullName
+<<<<<<< HEAD
                       : session?.user
                       ? session.user.name
                       : existUser && existUser.fullName
                       ? existUser.fullName
                       : existUser?.name}
+=======
+                      : session?.user && session.user.name}
+>>>>>>> a74b8e6c02b362e0563de6b9a155427d4fe9b89b
                   </p>
                   <button
                     className="bg-[#FFBD59] font-bold uppercase border hover:text-white text-black py-2 px-6 rounded-lg border-b-[4px] border-[#CC8C00] hover:bg-[#FFBD59] hover:border hover:border-[#E88F08] transition duration-500 hover:transition hover:duration-500  hover:-translate-y-1 hover:mb-[4px]"

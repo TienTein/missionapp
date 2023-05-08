@@ -69,7 +69,10 @@ export default function MissionItems() {
       >
         {newDatas &&
           newDatas.map((item) => (
-            <div key={item.Id}>
+            <div
+              key={item.Id}
+              className={`${isMatchMD ? "border-b border-white pb-1" : ""}`}
+            >
               <div className={`h-[60%]`}>
                 <Image
                   src={item?.ImagePath}
@@ -83,7 +86,7 @@ export default function MissionItems() {
 
               <div className={`flex flex-col justify-between h-[40%]`}>
                 <p
-                  className="font-reggaeone pt-2 px-2 cursor-pointer"
+                  className="pt-2 px-2 cursor-pointer"
                   onClick={() => handleClick(item)}
                 >
                   {item.Title}

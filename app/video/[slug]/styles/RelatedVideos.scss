@@ -1,15 +1,25 @@
 .slider {
-    height: 400px;
-    div {
-        outline: none;
-        .slide {
-            padding: 30px;
-            height: 400px;
-            transition: 0.5s;
-            cursor: pointer;
-
-            img {
-                height: 70%;
+    height: 100%;
+    .slick-track {
+        height: 100%;
+        .slick-slide {
+            height: 100%;
+            div {
+                height: 100%;
+                outline: none;
+                .slide {
+                    margin: 20px 0;
+                    padding: 0 20px;
+                    height: 100%;
+                    transition: 0.5s;
+                    cursor: pointer;
+                    img {
+                        border-radius: 5px;
+                    }
+                    p {
+                        text-transform: capitalize;
+                    }
+                }
             }
         }
     }
@@ -19,8 +29,8 @@
     position: absolute;
     z-index: 10;
     width: fit-content;
-    height: 100px;
-    background-color: black;
+    height: 200px;
+    background-color: transparent;
     display: flex;
     align-items: center;
     top: 50%;
@@ -42,6 +52,11 @@
 
 @media (max-width: 900px) {
     .slide {
-        padding: 0 60px;
+        padding: 0 0 !important;
+        margin: 0 0 !important;
+        p {
+            padding: 0 10px 10px;
+            font-size: 14px;
+        }
     }
 }

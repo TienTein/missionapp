@@ -36,7 +36,7 @@ const MissionVideo = () => {
 
   const id = +pathname.split("-").pop();
   const [newMission, setNewMission] = useState(null);
-
+  console.log(newMission);
   useEffect(() => {
     const mission = missions.data?.find((item) => item.Id === id);
     setNewMission(mission);
@@ -49,14 +49,8 @@ const MissionVideo = () => {
       } gap-4 text-white px-[10vw] py-[5vh]`}
     >
       <div className="flex flex-col [&>*]:mb-4">
-        <h1 className="text-[30px] font-reggaeone">{newMission?.Title}</h1>
-        <p>
-          Sed do.Lorem ipsum dolor sit amet, consectetur Nulla fringilla purus
-          Lorem ipsum dosectetur adipisicing elit at leo dignissim congue.
-          Mauris elementum accumsan leo vel tempor. Aliquam et elit eu nunc
-          rhoncus viverra quis at felis et netus et malesuada fames ac turpis
-          egestas. Aenean commodo ligula eget dolor
-        </p>
+        <h1 className="text-[30px] capitalize">{newMission?.Title}</h1>
+        <p>{newMission?.Description}</p>
       </div>
       <div className="flex flex-col w-full">
         <ProgressMission isPaused={isPaused} newMission={newMission} />
