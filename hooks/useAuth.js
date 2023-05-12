@@ -1,13 +1,14 @@
 import axios from "axios";
-import { api_host } from "../utils/api";
 import { useDispatch } from "react-redux";
 import authSlice from "../app/logic/authSlice";
 import { toast } from "react-toastify";
+import { getConfigUrl } from "@/utils/getConfig";
 
 const useAuth = () => {
   const dispatch = useDispatch();
 
   const signin = async ({ username, password }) => {
+    const apiHost = await getConfigUrl();
     try {
       // const formData = new FormData();
       dispatch(authSlice.actions.setUserLoading());
@@ -15,7 +16,7 @@ const useAuth = () => {
       params.append("Username", username);
       params.append("Password", password);
       params.append("grant_type", "password");
-      const res = await axios.post(`${api_host}oauth/token`, params);
+      const res = await axios.post(`${apiHost}oauth/token`, params);
       dispatch(authSlice.actions.setUserSuccess(res.data));
       toast.success("Đăng nhập thành công", {
         position: toast.POSITION.TOP_CENTER,
