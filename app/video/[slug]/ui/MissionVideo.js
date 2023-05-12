@@ -22,7 +22,7 @@ const MissionVideo = () => {
   useEffect(() => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      if (user === null && pathname !== "/") {
+      if ((user === null || user === "") && pathname !== "/") {
         router.push("/");
       }
     } catch (error) {
@@ -36,7 +36,6 @@ const MissionVideo = () => {
 
   const id = +pathname.split("-").pop();
   const [newMission, setNewMission] = useState(null);
-  console.log(newMission);
   useEffect(() => {
     const mission = missions.data?.find((item) => item.Id === id);
     setNewMission(mission);

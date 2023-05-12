@@ -23,8 +23,6 @@ export default function ProvidersWrapper({
   //   return <div>Loading...</div>;
   // }
 
-  console.log(isLoading);
-
   return (
     <SessionProvider>
       <ToastContainer />

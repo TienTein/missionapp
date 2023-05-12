@@ -53,7 +53,7 @@ export default function MissionItems() {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(20);
 
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;

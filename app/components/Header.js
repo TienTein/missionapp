@@ -84,8 +84,6 @@ const Header = () => {
     router.push("/");
   };
 
-  console.log(existUser);
-
   return (
     <AppBar
       className={`navbar__container ${isMatchMD ? "p__mobile" : ""}`}

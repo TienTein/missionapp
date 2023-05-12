@@ -55,7 +55,7 @@ const ProgressMission = ({ isPaused, newMission }) => {
   return (
     <div className="w-full flex justify-center">
       {existUser ? (
-        <h1 className="py-4 text-[#FFBD59] font-bold">{`Tài khoản này đã nhận Fpoint của video này <3`}</h1>
+        <h1 className="py-4 text-[#FFBD59] font-bold">{`Tài khoản này đã nhận Fpoint của video này.`}</h1>
       ) : (
         <>
           {count < 15 ? (
